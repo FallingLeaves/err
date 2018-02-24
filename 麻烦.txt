@@ -1,0 +1,418 @@
+git命令
+http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html
+
+echarts内存问题：
+http://blog.csdn.net/wxkongkong/article/details/72726720
+
+
+VUE反向代理
+config文件中index 添加
+proxyTable: {
+      
+  '/api': {
+        
+     target: 'http://192.168.171.231:7022/ecar_bigscreen/service/bigscreen',
+       
+     changeOrigin: true,
+        
+     pathRewrite: {
+          
+        '^/api': ''
+       
+     }
+      
+  }
+    
+},
+
+main中定义  Vue.prototype.HOST = '/api'
+
+
+vue中引入jQuery
+在webpack.base.config中：
+var webpack = require('webpack')
+resolve属性中添加  'jquery': 'jquery'
+新增  plugins: [
+   
+	new webpack.optimize.CommonsChunkPlugin('common.js'),
+    
+	new webpack.ProvidePlugin({
+       
+	  $: "jquery",
+       
+	  "window.jQuery": "jquery",
+       
+          jQuery: "jquery"
+    
+	})
+   
+      ]
+main中  import $ from 'jquery'
+
+
+数字三位分割
+number.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+
+function toThousands(num) {
+      var num = (num || 0).toString(),
+        result = '';
+      while (num.length > 3) {
+        result = ',' + num.slice(-3) +
+          result;
+        num = num.slice(0, num.length - 3);
+      }
+      if (num) {
+        result = num + result;
+      }
+      return result;
+    }
+
+超出省略
+    单行
+    overflow:hidden;
+    white-space:nowrap; 
+    text-overflow:ellipsis;
+    多行
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+
+车牌号校验
+function isVehicleNumber(vehicleNumber) {
+      var result = false;
+      if (vehicleNumber.length == 7){
+        var express = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
+        result = express.test(vehicleNumber);
+      }
+      return result;
+  }
+
+rem
+(function(doc, win) {
+    var docEl = doc.documentElement,
+        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+        recalc = function() {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+        };
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+})(document, window);
+
+
+
+fetch封装
+import {
+	baseUrl
+} from './env'
+
+export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
+	type = type.toUpperCase();
+	url = baseUrl + url;
+
+	if (type == 'GET') {
+		let dataStr = ''; //数据拼接字符串
+		Object.keys(data).forEach(key => {
+			dataStr += key + '=' + data[key] + '&';
+		})
+
+		if (dataStr !== '') {
+			dataStr = dataStr.substr(0, dataStr.lastIndexOf('&'));
+			url = url + '?' + dataStr;
+		}
+	}
+
+	if (window.fetch && method == 'fetch') {
+		let requestConfig = {
+			credentials: 'include',
+			method: type,
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			mode: "cors",
+			cache: "force-cache"
+		}
+
+		if (type == 'POST') {
+			Object.defineProperty(requestConfig, 'body', {
+				value: JSON.stringify(data)
+			})
+		}
+		
+		try {
+			const response = await fetch(url, requestConfig);
+			const responseJson = await response.json();
+			return responseJson
+		} catch (error) {
+			throw new Error(error)
+		}
+	} else {
+		return new Promise((resolve, reject) => {
+			let requestObj;
+			if (window.XMLHttpRequest) {
+				requestObj = new XMLHttpRequest();
+			} else {
+				requestObj = new ActiveXObject;
+			}
+
+			let sendData = '';
+			if (type == 'POST') {
+				sendData = JSON.stringify(data);
+			}
+
+			requestObj.open(type, url, true);
+			requestObj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			requestObj.send(sendData);
+
+			requestObj.onreadystatechange = () => {
+				if (requestObj.readyState == 4) {
+					if (requestObj.status == 200) {
+						let obj = requestObj.response
+						if (typeof obj !== 'object') {
+							obj = JSON.parse(obj);
+						}
+						resolve(obj)
+					} else {
+						reject(requestObj)
+					}
+				}
+			}
+		})
+	}
+}
+
+position: fixed 一直是相对浏览器视口来定位的。有一天，你在固定定位元素的父元素上应用了 transform 属性，当你刷新浏览器想看看最新的页面效果时，你竟然发现固定定位的元素竟然相对于父元素来定位了
+
+
+Vue项目中引用本地资源，template中使用相对路径 CSS JS 中只能使用模块依赖
+简单方法： 资源放在static文件夹下
+https://www.cnblogs.com/huangqiao/p/7798887.html
+
+css自定义字体
+@font-face {
+    font-family: 'regular';
+    src: url('./alternategothic2.ttf');
+}
+之后可以在echarts中使用
+
+
+对于那些重要的资源，你现在可以使用<link rel="preload"> 来告诉浏览器你需要尽快地加载它们。你只需要写上:
+<link rel="preload" href="very_important.js" as="script">
+你几乎可以链接到任何东西上，as 属性告诉浏览器要下载的是什么。一些可能的值是：
+script
+style
+image
+font
+audio
+video
+有一点要注意，要预加载字体你还必须设置crossorigin 属性，即使字体在同一个域名下：
+<link rel="preload" href="font.woff" as="font" crossorigin>
+
+swiper不能自动轮播问题
+https://www.cnblogs.com/DivHao/p/6866399.html
+初始化参数添加
+observer:true,//修改swiper自己或子元素时，自动初始化swiper 
+observeParents:false,//修改swiper的父元素时，自动初始化swiper 
+onSlideChangeEnd: function(swiper){ 
+　　　swiper.update();  
+　　　swiper.startAutoplay();
+　　  swiper.reLoop();  
+}
+
+
+vue watch vuex中复杂数据类型时可以修改数据时在state中添加时间戳， watch时间戳， 间接知道数据发生变化
+
+vue 路由配置中的嵌套路由（子路由）子路由对应的子组件在父路由对应父组件的<router-view></router-view>中 子组件定位 做到全屏
+
+PWA    https://pwa.rocks/
+
+vue中请求默认不带cookie等验证
+vue-resource 可以设置
+Vue.http.interceptors.push(function(request, next) {
+  //拦截器
+  // 跨域携带cookie
+  request.credentials = true
+  next()
+})
+
+ -webkit-tap-highlight-color: transparent;
+
+showdown markDown格式转换插件
+markdownText: function(detail) {
+  //转换markDown格式
+  let converter = new showdown.Converter()
+  return converter.makeHtml(detail)
+},
+
+
+js执行机制：https://juejin.im/post/59e85eebf265da430d571f89
+
+Element.getBoundingClientRect()方法返回元素的大小及其相对于视口的位置。DOMRect 对象包含了一组用于描述边框的只读属性——left、top、right和bottom，单位为像素。除了 width 和 height 外的属性都是相对于视口的左上角位置而言的。
+https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect
+
+element.setCapture：在处理一个 mousedown 事件过程中调用这个方法来把全部的鼠标事件重新定向到这个元素，直到鼠标按钮被释放或者 document.releaseCapture() 被调用。
+if (obj.setCapture) {
+   obj.setCapture();
+} else {
+   window.captureEvents(Event.MOUSEMOVE);
+}
+
+设置动画元素为 position:absolute; 或 position:fixed(只需要repaint),而position:static或position: relative元素应用动画效果会造成频繁的reflow
+
+
+禁止选中user-select: none;
+
+new Set() 添加add  长度size
+
+vue cli默认webpack config／index.js的配置解释
+var path = require('path')
+ 2 
+ 3 module.exports = {
+ 4   build: { // production 环境
+ 5     env: require('./prod.env'), // 使用 config/prod.env.js 中定义的编译环境
+ 6     index: path.resolve(__dirname, '../dist/index.html'), // 编译输入的 index.html 文件
+ 7     assetsRoot: path.resolve(__dirname, '../dist'), // 编译输出的静态资源路径
+ 8     assetsSubDirectory: 'static', // 编译输出的二级目录
+ 9     assetsPublicPath: '/', // 编译发布的根目录，可配置为资源服务器域名或 CDN 域名
+10     productionSourceMap: true, // 是否开启 cssSourceMap
+11     // Gzip off by default as many popular static hosts such as
+12     // Surge or Netlify already gzip all static assets for you.
+13     // Before setting to `true`, make sure to:
+14     // npm install --save-dev compression-webpack-plugin
+15     productionGzip: false, // 是否开启 gzip
+16     productionGzipExtensions: ['js', 'css'] // 需要使用 gzip 压缩的文件扩展名
+17   },
+18   dev: { // dev 环境
+19     env: require('./dev.env'), // 使用 config/dev.env.js 中定义的编译环境
+20     port: 8080, // 运行测试页面的端口
+21     assetsSubDirectory: 'static', // 编译输出的二级目录
+22     assetsPublicPath: '/', // 编译发布的根目录，可配置为资源服务器域名或 CDN 域名
+23     proxyTable: {}, // 需要 proxyTable 代理的接口（可跨域）
+24     // CSS Sourcemaps off by default because relative paths are "buggy"
+25     // with this option, according to the CSS-Loader README
+26     // (https://github.com/webpack/css-loader#sourcemaps)
+27     // In our experience, they generally work as expected,
+28     // just be aware of this issue when enabling this option.
+29     cssSourceMap: false // 是否开启 cssSourceMap
+30   }
+31 }
+
+把组件按组分块
+有时候我们想把某个路由下的所有组件都打包在同个异步 chunk 中。只需要 给 chunk 命名，提供 require.ensure 第三个参数作为 chunk 的名称:
+
+const Foo = r => require.ensure([], () => r(require('./Foo.vue')), 'group-foo')
+const Bar = r => require.ensure([], () => r(require('./Bar.vue')), 'group-foo')
+const Baz = r => require.ensure([], () => r(require('./Baz.vue')), 'group-foo')
+
+jQuery.proxy( scope, name )。第一个参数是要设定的作用域对象。第二个参数是将要设置作用域的函数名（必须是第一个作用域对象的一个属性）。
+
+jQuery.each(object, [callback])不同于例遍 jQuery 对象的 $().each() 方法，此方法可用于例遍任何对象。回调函数拥有两个参数：第一个为对象的成员或数组的索引，第二个为对应变量或内容。如果需要退出 each 循环可使回调函数返回 false，其它返回值将被忽略。
+
+echarts2 中的setOption方法再次调用会合并上次的option   setOption（option，true）可以阻止合并
+
+避免元素内部断行产生新列
+-webkit-column-break-inside: avoid;
+          page-break-inside: avoid;
+               break-inside: avoid;
+
+CSS函数calc()：一个数学表达式,该表达式的结果会作为最终的值。+ 和 - 运算符的两边必须始终要有空白符。* / 不需要，但推荐有空白符保持一致。
+
+
+jquery-tpml 循环数组 模板不用写each 
+
+
+function hasClass(ele,cls){
+	return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
+}
+function addClass(ele,cls) {
+	if (!hasClass(ele,cls)) ele.className += " "+cls;
+}
+function removeClass(ele,cls) {
+	var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
+	ele.className=ele.className.replace(reg,' ');
+}
+
+
+h5首页优化 http://mp.weixin.qq.com/s/ye1CeIjlfs9VSUab3gQI5g
+
+缓存https://juejin.im/entry/5a7a9fcf5188257a5c605369?utm_source=gold_browser_extension
+
+Object.keys() 方法会返回一个由一个给定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和使用 for...in 循环遍历该对象时返回的顺序一致 （两者的主要区别是 一个 for-in 循环还会枚举其原型链上的属性）。
+
+在原生不支持的旧环境中添加兼容的 Object.keys
+if (!Object.keys) {
+  Object.keys = (function () {
+    var hasOwnProperty = Object.prototype.hasOwnProperty,
+        hasDontEnumBug = !({toString: null}).propertyIsEnumerable('toString'),
+        dontEnums = [
+          'toString',
+          'toLocaleString',
+          'valueOf',
+          'hasOwnProperty',
+          'isPrototypeOf',
+          'propertyIsEnumerable',
+          'constructor'
+        ],
+        dontEnumsLength = dontEnums.length;
+
+    return function (obj) {
+      if (typeof obj !== 'object' && typeof obj !== 'function' || obj === null) throw new TypeError('Object.keys called on non-object');
+
+      var result = [];
+
+      for (var prop in obj) {
+        if (hasOwnProperty.call(obj, prop)) result.push(prop);
+      }
+
+      if (hasDontEnumBug) {
+        for (var i=0; i < dontEnumsLength; i++) {
+          if (hasOwnProperty.call(obj, dontEnums[i])) result.push(dontEnums[i]);
+        }
+      }
+      return result;
+    }
+  })()
+};
+
+oninput
+当 <input> 或 <textarea> 元素的值更改时，DOM input 事件会同步触发。 单选框、多选框不行
+
+一般图片大小超过 2KB 就不推荐使用 base64 嵌入显示了。
+
+移动端首屏资源大小不超过1MB
+
+原生css变量native variables 例如：
+:root {
+  --theme-colour: cornflowerblue;
+}
+
+p {
+  color: var(--theme-colour);
+}
+类似css预处理器  还可以改变变量值
+const rootEl = document.documentElement;
+rootEl.style.setProperty('--theme-colour', 'plum');
+
+禁止文字选中
+.unselectable {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+flex布局中相邻的元素不会出现重叠塌陷现象
+display: inline-flex; 创建内联的弹性布局
+
+const highpass = cutoff => n => n >= cutoff;
+const highpass = function highpass(cutoff) {
+  return function (n) {
+    return n >= cutoff;
+  };
+};
+
+折线图堆叠的重要参数stack。只要将stack的值设置不相同或去掉，就不会堆叠了
