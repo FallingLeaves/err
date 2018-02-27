@@ -1,3 +1,5 @@
+http://eoc.e-car.cn:7070/bd-service-web/index.html
+
 git命令
 http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html
 
@@ -416,3 +418,32 @@ const highpass = function highpass(cutoff) {
 };
 
 折线图堆叠的重要参数stack。只要将stack的值设置不相同或去掉，就不会堆叠了
+
+
+
+https://segmentfault.com/q/1010000008729922
+http://blog.csdn.net/fe_dev/article/details/78450844
+文字渐变：先设置背景色渐变——规定背景的划分区域——保险一点再设置（text-fill- color会覆盖color所定义的字体颜色）
+例如：
+    h1.start-gradient {
+      font-size: 60px;
+      font-weight: bold;
+      font-family: helvetica;
+      text-align: center;
+      background: linear-gradient(to left, rgba(176, 31, 184, 1), rgba(255, 89, 76, 1));
+      /* 背景色渐变 */
+      -webkit-background-clip: text;
+      /* 规定背景的划分区域 */
+      -webkit-text-fill-color: transparent;
+      /* 防止字体颜色覆盖 */
+    }
+
+抛物线动画https://juejin.im/post/5a9123d16fb9a063563135dc
+定位
+过渡：left 水平动画  linear   top 垂直动画 ease-in
+
+
+利用css变量设置按钮hover状态
+https://juejin.im/post/5a924fcaf265da4e7d6061a6
+
+趣味css  https://github.com/chokcoco/iCSS/issues/1
