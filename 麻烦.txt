@@ -484,3 +484,18 @@ Chrome插件  https://juejin.im/post/5aa09bccf265da239376a292
 前端常见算法  https://juejin.im/post/5aa4cd1051882577b45ea2c3
 
 浏览器事件机制（微任务，宏任务） https://juejin.im/post/5aa3332b518825557c011896
+
+常见布局  https://juejin.im/post/5aa252ac518825558001d5de
+
+webpack4.0简易入门 https://juejin.im/entry/5aaccd916fb9a028bf051715?utm_source=gold_browser_extension
+
+前端自动化  https://juejin.im/post/5aab8b3c5188255579186a51?utm_source=gold_browser_extension
+
+css技巧  https://l-hammer.github.io/You-need-to-know-css/#/translucent-borders
+
+promise使用 https://juejin.im/post/5ab07e1e51882555731bf43b?utm_source=gold_browser_extension
+
+shape 文本环绕  https://juejin.im/post/5aaf9bf2f265da239f072eb6?utm_source=gold_browser_extension
+
+面试 https://juejin.im/post/5aae076d6fb9a028cc6100a9?utm_source=gold_browser_extension
+     https://juejin.im/post/5ab70735f265da237a4cf9b1
