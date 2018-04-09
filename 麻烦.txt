@@ -407,6 +407,13 @@ rootEl.style.setProperty('--theme-colour', 'plum');
   -ms-user-select: none;
 }
 
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently not supported by any browser */
+
 flex布局中相邻的元素不会出现重叠塌陷现象
 display: inline-flex; 创建内联的弹性布局
 
@@ -499,3 +506,31 @@ shape 文本环绕  https://juejin.im/post/5aaf9bf2f265da239f072eb6?utm_source=gold_
 
 面试 https://juejin.im/post/5aae076d6fb9a028cc6100a9?utm_source=gold_browser_extension
      https://juejin.im/post/5ab70735f265da237a4cf9b1
+
+content中的特殊符号 https://www.cnblogs.com/wujindong/p/5630656.html
+
+移动端禁止弹出键盘 https://www.imooc.com/article/20453
+
+webpack4基础 https://juejin.im/post/5ab79fa75188255582525400?utm_source=gold_browser_extension
+
+移动端滚动穿透 https://github.com/pod4g/tool/wiki/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%BB%9A%E5%8A%A8%E7%A9%BF%E9%80%8F%E9%97%AE%E9%A2%98
+
+IOS移动端点击阴影 https://blog.csdn.net/shuzipai/article/details/52312897
+		  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  		  -webkit-tap-highlight-color:transparent;
+
+https://github.com/jtyjty99999/mobileTech
+
+合集 https://github.com/Wscats/Good-Text-Share  
+     https://juejin.im/post/5abb22925188255c4c1050e0
+     http://doc.damobing.com/fe-guide/350040
+
+精简JS https://juejin.im/post/5ab8fa12518825188038ef6a?utm_source=gold_browser_extension
+       https://github.com/Chalarangelo/30-seconds-of-code
+
+
+全局属性 contenteditable  是一个枚举属性（enumerated attribute），表示元素是否可被用户编辑。 如果可以，浏览器会修改元素的部件（widget）以允许编辑
+
+MVVM 简单分析 https://juejin.im/post/5abdd6f6f265da23793c4458?utm_source=gold_browser_extension
+
+toLocaleString() https://juejin.im/post/5ac472016fb9a028c22afa9d?utm_source=gold_browser_extension
