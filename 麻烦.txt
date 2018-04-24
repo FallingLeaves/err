@@ -551,3 +551,7 @@ vue源码系列  https://segmentfault.com/a/1190000014322334?utm_source=channel-hott
 
 原生与web的结合：https://mp.weixin.qq.com/s/e0YqiCLvn4gfXCnWj_fd7g 
                  https://docs.jasonette.com/web/
+
+blog  https://www.cnblogs.com/fengxiongZz/p/7707219.html
+      http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/#more
+      https://righere.github.io/2016/10/10/install-hexo/
