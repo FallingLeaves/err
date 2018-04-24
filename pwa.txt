@@ -1,1 +1,71 @@
 应用外壳架构：头部，底部等静态CSS，HTML，JS进行缓存
+
+manifest：json格式  指定了webAPP桌面图标、名称、开屏图标、运行模式等一系列资源的清单
+
+{
+    "name": "图书搜索", ---webApp的名称
+    "short_name": "书查", ---简称
+    "start_url": "/", ---用户打开webAPP时加载的URL
+    "display": "standalone", ---应用的显示模式fullscreen  standalone minimal-ui browser
+    "background_color": "#333",
+    "description": "一个搜索图书的小WebAPP（基于豆瓣开放接口）",
+    "orientation": "portrait-primary", ---控制webAPP的方向 any, natural, landscape, landscape-primary, landscape-secondary, portrait, portrait-primary, portrait-secondary
+    "theme_color": "#5eace0", ---
+    "icons": [{
+        "src": "img/icons/book-32.png",
+        "sizes": "32x32",
+        "type": "image/png"
+    }, {
+        "src": "img/icons/book-72.png",
+        "sizes": "72x72",
+        "type": "image/png"
+    }, {
+        "src": "img/icons/book-128.png",
+        "sizes": "128x128",
+        "type": "image/png"
+    }, {
+        "src": "img/icons/book-144.png",
+        "sizes": "144x144",
+        "type": "image/png"
+    }, {
+        "src": "img/icons/book-192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    }, {
+        "src": "img/icons/book-256.png",
+        "sizes": "256x256",
+        "type": "image/png"
+    }, {
+        "src": "img/icons/book-512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }]
+}
+
+使用manifest
+   在页面中添加meta标签  <link rel="manifest" href="/manifest.json">
+
+   iOS（safari）中的处理方式
+     1.apple-touch-icon：桌面图标，通过在head中添加<link rel="apple-touch-icon" href="your_icon.png">即可。其中还       可以添加sizes属性，来指示系统使用在各类平台（iphone、ipad…）中使用最合适的图标
+     2.apple-mobile-web-app-title：应用的标题。注意，这里需要使用meta标签<meta name="apple-mobile-web-app-title"          content="AppTitle">
+     3.apple-mobile-web-app-capable：类似于manifest中的display的功能，通过设置为yes可以进入standalone模式，同样也       是meta标签<meta name="apple-mobile-web-app-capable" content="yes">
+     4.apple-mobile-web-app-status-bar-style：这会改变iOS移动设备的状态栏的样式，并且只有在standalone模式中才会有       效果。<meta name="apple-mobile-web-app-status-bar-style" content="black">，不过在iPhoneX上black会导致状态栏       不显示任何东西。
+    例如
+        <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
+	<meta name="apple-mobile-web-app-title" content="图书搜索">
+	<link rel="apple-touch-icon" href="img/icons/book-256.png">
+
+    IE、edge中的处理
+      1.application-name：指明了app的名称
+      2.msapplication-TileColor：指明了“tile”的背景颜色
+      3.msapplication-xxxlogo：不同大小的“tile”所使用的图标，包括这几种：msapplication-square70x70logo,         msapplication-square150x150logo, msapplication-wide310x150logo, msapplication-square310x310logo
+    例如
+	<meta name="application-name" content="图书搜索" />
+	<meta name="msapplication-TileColor" content="#222">
+	<meta name="msapplication-square70x70logo" content="img/icons/book-72.png" />
+	<meta name="msapplication-square150x150logo" content="img/icons/book-144.png" />
+	<meta name="msapplication-square310x310logo" content="img/icons/book-256.png" />
+
+serviceWorker
+   
