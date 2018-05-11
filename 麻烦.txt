@@ -533,7 +533,7 @@ https://github.com/jtyjty99999/mobileTech
 
 MVVM 简单分析 https://juejin.im/post/5abdd6f6f265da23793c4458?utm_source=gold_browser_extension
 
-toLocaleString() https://juejin.im/post/5ac472016fb9a028c22afa9d?utm_source=gold_browser_extension
+偷懒 toLocaleString() https://juejin.im/post/5ac472016fb9a028c22afa9d?utm_source=gold_browser_extension
 
 PWA https://juejin.im/post/5ac8a67c5188255c5668b0b8?utm_source=gold_browser_extension
 
@@ -555,3 +555,22 @@ vue源码系列  https://segmentfault.com/a/1190000014322334?utm_source=channel-hott
 blog  https://www.cnblogs.com/fengxiongZz/p/7707219.html
       http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/#more
       https://righere.github.io/2016/10/10/install-hexo/
+      https://xuanwo.org/2015/03/26/hexo-intor/
+      https://juejin.im/post/5addb90af265da0b7f442935?utm_source=gold_browser_extension
+
+vue小技巧  https://juejin.im/post/5ae02f39518825672f198ac2?utm_source=gold_browser_extension
+
+魔方：https://juejin.im/post/5ae838475188253dc6127c8e?utm_source=gold_browser_extension
+
+常用代码段：https://segmentfault.com/a/1190000014700549?utm_source=channel-hottest
+	    https://juejin.im/post/5ae97bd05188256719521ae0?utm_source=gold_browser_extension
+
+常用css集合：https://www.qdfuns.com/article/49751/ed89940e4d1747e4a0477dc16e0b78ad.html
+
+https://github.com/qianlongo/zepto-analysis
+
+https://juejin.im/entry/5aee99866fb9a07aaf351c22?utm_source=gold_browser_extension
+
+vue脚手架中webpack分析 https://segmentfault.com/a/1190000014804826?utm_source=channel-hottest
+
+vue组件：https://juejin.im/post/5af16a2cf265da0b8636353b?utm_source=gold_browser_extension
