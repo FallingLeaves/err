@@ -574,3 +574,13 @@ https://juejin.im/entry/5aee99866fb9a07aaf351c22?utm_source=gold_browser_extensi
 vue脚手架中webpack分析 https://segmentfault.com/a/1190000014804826?utm_source=channel-hottest
 
 vue组件：https://juejin.im/post/5af16a2cf265da0b8636353b?utm_source=gold_browser_extension
+
+脚手架：https://juejin.im/entry/5afcb827f265da0b7868b509?utm_source=gold_browser_extension
+
+深浅：https://www.cnblogs.com/Ayinger/p/7990188.html
+
+页面可视化工具：https://segmentfault.com/a/1190000014963740?utm_source=channel-hottest
+
+promise简单入门： https://juejin.im/post/5afe6d3bf265da0b9e654c4b
+
+vue-cli安装关于prettier报错，npm i prettier@~1.12.0重新下载
