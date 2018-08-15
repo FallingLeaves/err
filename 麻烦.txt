@@ -1,5 +1,11 @@
 http://eoc.e-car.cn:7070/bd-service-web/index.html
 
+font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+
+wx6055f860a18faa94
+
+do5yDfV03TyAZ5K6w79uEzVW
+
 git命令
 http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html
 
@@ -584,3 +590,11 @@ vue组件：https://juejin.im/post/5af16a2cf265da0b8636353b?utm_source=gold_browser
 promise简单入门： https://juejin.im/post/5afe6d3bf265da0b9e654c4b
 
 vue-cli安装关于prettier报错，npm i prettier@~1.12.0重新下载
+
+https://segmentfault.com/a/1190000015125196?utm_source=channel-hottest 简单的pwa
+
+vue小坑总结 https://juejin.im/post/5b1230c1f265da6e603933ad?utm_source=gold_browser_extension
+
+移动端调试 https://juejin.im/post/5b15022ff265da6e163720c6
+
+arttemplate的help方法  https://blog.csdn.net/Evan_Leung/article/details/51869101    https://blog.csdn.net/u011413061/article/details/50498470
